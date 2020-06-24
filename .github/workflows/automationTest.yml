@@ -1,9 +1,8 @@
 name: Automation Test
 
 on:
-  repository_dispatch:
-    types: do-something
-
+   push:
+    branches: [ master ]
 jobs:
   build:
 
