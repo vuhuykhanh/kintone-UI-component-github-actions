@@ -5,5 +5,5 @@ module.exports = {
         "username": "cybozu",	
         "password": "cybozu"
     },	  
-	"folderTest": js
+	"folderTest": "js"
 }

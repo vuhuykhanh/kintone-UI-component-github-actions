@@ -12,17 +12,16 @@ jobs:
     name: Run automation test kintone-ui-component
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
-        node-version: '10.x'
+        node-version: '12.x'
     - name: Install chrome
       run: |
         sudo apt-get update 
         sudo apt-get install google-chrome-stable 
     - name: Install package
-      run: |
-        npm install
+      run: npm install
     - name: Get latest build kintone-ui-component
       uses: ./actions/get_latest_build
       id: get_latest_build
