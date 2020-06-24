@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "wdio wdio.conf.js",
-    "preparation": "npx wdio wdio.conf.js --suite preparation",
+    "preparation": "wdio wdio.conf.js --suite preparation",
     "build-webpack": "cross-env NODE_ENV=production webpack"
   },
   "repository": {
@@ -20,6 +20,7 @@
   "dependencies": {
     "@actions/core": "^1.2.0",
     "@actions/github": "^1.1.0",
+    "@kintone/kintone-ui-component": "^0.7.2",
     "babel-loader": "^8.0.6",
     "babel-preset-stage-0": "^6.24.1",
     "chromedriver": "^78.0.1",
@@ -36,15 +37,16 @@
     "chai": "^4.2.0",
     "pngjs": "^3.4.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
-    "wdio-docker-service": "^2.1.5-rc.0",
-    "wdio-html-format-reporter": "^0.2.9",
-    "@wdio/cli": "^6.1.20",
-    "@wdio/local-runner": "^6.1.20",
-    "@wdio/mocha-framework": "^6.1.19",
-    "@wdio/spec-reporter": "^6.1.14",
-    "@wdio/sync": "^6.1.14",
-    "chromedriver": "^83.0.0",
-    "wdio-chromedriver-service": "^6.0.3",
-    "wdio-spec-reporter": "^0.1.5"
+    "@types/node": "^10.12.20",
+    "@types/webdriverio": "^4.13.1",
+    "@wdio/allure-reporter": "^5.7.11",
+    "@wdio/cli": "^5.7.0",
+    "@wdio/local-runner": "^5.7.0",
+    "@wdio/mocha-framework": "^5.7.0",
+    "@wdio/spec-reporter": "^5.7.13",
+    "@wdio/sync": "^5.7.0",
+    "@wdio/selenium-standalone-service": "^5.15.0",
+    "wdio-image-comparison-service": "^1.7.0",
+    "webdriverio": "^5.18.7"
   }
 }
