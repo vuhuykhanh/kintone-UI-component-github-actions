@@ -6,9 +6,9 @@ exports.config = {
   specs: [
     //Fro running test scipt
     `./test/testScripts/${CONFIG.folderTest}-test/attachment.js`,
-    `./test/testScripts/${CONFIG.folderTest}-test/text.js`,
-    `./test/testScripts/${CONFIG.folderTest}-test/datetime.js`,
-    `./test/testScripts/${CONFIG.folderTest}-test/tabs.js`,
+    // `./test/testScripts/${CONFIG.folderTest}-test/text.js`,
+    // `./test/testScripts/${CONFIG.folderTest}-test/datetime.js`,
+    // `./test/testScripts/${CONFIG.folderTest}-test/tabs.js`,
     `./test/testScripts/${CONFIG.folderTest}-test/alert.js`,
     // `./test/testScripts/${CONFIG.folderTest}-test/textarea.js`,
     // `./test/testScripts/${CONFIG.folderTest}-test/spinner.js`,
