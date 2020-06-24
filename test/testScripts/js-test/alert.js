@@ -38,7 +38,7 @@ describe('kintoneUIComponent - Alert', function () {
         Helper.ElementHandler
             .waitForElement(SUCCESS_ALERT)
             .verifyElementColor(SUCCESS_ALERT, 'background-color', '#91c36c')
-            .verifyElementSize(SUCCESS_ALERT, 299, 32)
+            .verifyElementSize(SUCCESS_ALERT, 293, 32)
             .verifyElementPosition(SUCCESS_ALERT, 'position', 'relative')
     });
 
@@ -46,7 +46,7 @@ describe('kintoneUIComponent - Alert', function () {
         Helper.ElementHandler
             .waitForElement(ERROR_ALERT)
             .verifyElementColor(ERROR_ALERT, 'background-color', '#e74c3c')
-            .verifyElementSize(ERROR_ALERT, 299, 32)
+            .verifyElementSize(ERROR_ALERT, 293, 32)
             .verifyElementPosition(ERROR_ALERT, 'position', 'relative')
     });
 
