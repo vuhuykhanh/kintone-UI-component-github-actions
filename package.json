@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "wdio wdio.conf.js",
-    "preparation": "wdio wdio.conf.js --suite preparation",
+    "preparation": "npx wdio wdio.conf.js --suite preparation",
     "build-webpack": "cross-env NODE_ENV=production webpack"
   },
   "repository": {
