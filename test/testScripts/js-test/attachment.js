@@ -1,4 +1,3 @@
-const common = require('../../utils/Common.js');
 const Helper = require('../../helper/main.js');
 const path = require('path');
 
@@ -31,16 +30,9 @@ const SET_FILES_FILESIZE_ATTACHMENT = "//div[@id='set-files-attachment']//div[@c
 const filePath = path.join(__dirname, 'alert.js')
 
 describe('kintoneUIComponent - Attachment', function () {
-    before(() => {
-        common.logInSlash();
-    });
-    after(() => {
-        common.logOutSlash();
-    });
-
     it('[Attachment-1] should Verify the operation of Attachment', function () {
         Helper.ElementHandler
-            .chooseFile(CONSTRUCTOR_ATTACHMENT_INPUT, filePath)
+            .setValue(CONSTRUCTOR_ATTACHMENT_INPUT, filePath)
             .verifyText(CONSTRUCTOR_FILENAME_ATTACHMENT, 'alert.js')
             .click(CONSTRUCTOR_ATTACHMENT_BUTTON_DELETE)
             .verifyElementNotExisting(CONSTRUCTOR_FILENAME_ATTACHMENT)
@@ -83,12 +75,12 @@ describe('kintoneUIComponent - Attachment', function () {
             .click(SHOW_ERROR_BUTTON_ATTACHMENT)
             .verifyText(SET_ERROR_MESSAGE_ATTACHMENT, 'Error message')
             .click(HIDE_ERROR_BUTTON_ATTACHMENT)
-            .verifyElementNotVisible(SET_ERROR_MESSAGE_ATTACHMENT)
+            .verifyElementNotDisplayed(SET_ERROR_MESSAGE_ATTACHMENT)
     });
 
     it('[Attachment-8] should Verify the operation of Attachment', function () {
         Helper.ElementHandler
-            .chooseFile(ON_CALLBACK_ATTACHMENT + '//input', filePath)
+            .setValue(ON_CALLBACK_ATTACHMENT + '//input', filePath)
             .verifyAlertText('alert.js')
             .click(ON_CALLBACK_FILENAME_ATTACHMENT + "//div[@class='kuc-attachment_file_action']//button")
             .verifyAlertText('')
@@ -98,8 +90,8 @@ describe('kintoneUIComponent - Attachment', function () {
     it('[Attachment-9] should Verify the operation of Attachment', function () {
         Helper.ElementHandler
             .click(HIDE_BUTTON_ATTACHMENT)
-            .verifyElementNotVisible(SHOW_HIDE_ATTACHMENT)
+            .verifyElementNotDisplayed(SHOW_HIDE_ATTACHMENT)
             .click(SHOW_BUTTON_ATTACHMENT)
-            .verifyElementVisible(SHOW_HIDE_ATTACHMENT)
+            .verifyElementDisplayed(SHOW_HIDE_ATTACHMENT)
     });
 });

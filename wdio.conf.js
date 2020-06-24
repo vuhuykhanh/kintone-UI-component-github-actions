@@ -1,18 +1,15 @@
 const CONFIG = require('./test/config.js');
-const fs = require('fs');
-const path = require('path');
-const moment = require('moment');
-const reportFolder = path.join('reports');
-const screenshotFolder = path.join('screenshot')
+const Auth = require('./test/pageObject/auth/Auth.js')
+
 
 exports.config = {
   specs: [
     //Fro running test scipt
     `./test/testScripts/${CONFIG.folderTest}-test/attachment.js`,
     `./test/testScripts/${CONFIG.folderTest}-test/text.js`,
-    // `./test/testScripts/${CONFIG.folderTest}-test/datetime.js`,
-    // `./test/testScripts/${CONFIG.folderTest}-test/tabs.js`,
-    // `./test/testScripts/${CONFIG.folderTest}-test/alert.js`,
+    `./test/testScripts/${CONFIG.folderTest}-test/datetime.js`,
+    `./test/testScripts/${CONFIG.folderTest}-test/tabs.js`,
+    `./test/testScripts/${CONFIG.folderTest}-test/alert.js`,
     // `./test/testScripts/${CONFIG.folderTest}-test/textarea.js`,
     // `./test/testScripts/${CONFIG.folderTest}-test/spinner.js`,
     // `./test/testScripts/${CONFIG.folderTest}-test/label.js`,
@@ -26,10 +23,8 @@ exports.config = {
     // `./test/testScripts/${CONFIG.folderTest}-test/multiplechoice.js`,
     // `./test/testScripts/${CONFIG.folderTest}-test/notify-popup.js`,
     // `./test/testScripts/${CONFIG.folderTest}-test/checkbox.js`,
-
     // `./test/testScripts/${CONFIG.folderTest}-test/dropdown.js`,
     // `./test/testScripts/${CONFIG.folderTest}-test/table.js`,
-
   ],
 
   suites: {
@@ -38,58 +33,51 @@ exports.config = {
     ],
   },
 
-  maxInstances: 1,
-  //Server Info for Chrome
-  host: 'localhost',
-  port: 4444,
-
-  //Testing Browser Info
+  maxInstances: 10,
   capabilities: [{
     maxInstances: 1,
     browserName: 'chrome',
-    'goog:chromeOptions': {
-      // to run chrome headless the following flags are required
-      // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
-      args: ['--headless', '--disable-gpu', 'no-sandbox', "--window-size=1920,1080"],
-    },
-    proxy: {
-      proxyType: 'autodetect'
-    }
+    // 'goog:chromeOptions': {
+    //   // to run chrome headless the following flags are required
+    //   // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
+    //   args: ['--headless', '--disable-gpu', 'no-sandbox'],
+    // },
   }],
-  before: function () {
-    if (!fs.existsSync(reportFolder)) {
-      fs.mkdirSync(reportFolder);
-    }
-    if (!fs.existsSync(screenshotFolder)) {
-      fs.mkdirSync(screenshotFolder);
-    }
-  },
-  afterTest: function (test) {
-    // if test passed, ignore, else take and save screenshot.
-    if (test.passed) {
-      return;
-    }
-    const datetime = moment().format('YYYYMMDD-HHmmss.SSS');
-    const filepath = path.join(screenshotFolder, datetime + '.png');
-    browser.saveScreenshot(filepath);
-  },
-  reporters: ['spec', 'html-format'],
-  reporterOptions: {
-    htmlFormat: {
-      outputDir: reportFolder,
-      screenshotPath: screenshotFolder,
-    },
-  },
-
-  services: ['selenium-standalone'],
-  sync: true,
-  deprecationWarnings: false,
-
-  //Testing Framework Info
+  logLevel: 'silent',
+  bail: 0,
+  baseUrl: 'http://localhost',
+  waitforTimeout: 10000,
+  connectionRetryTimeout: 90000,
+  connectionRetryCount: 3,
+  services: [
+    'selenium-standalone',
+    ['image-comparison',
+      {
+        baselineFolder: './resources/screen_images/baseline',
+        formatImageName: '{platformName}_{tag}_{width}x{height}',
+        screenshotPath: './resources/screen_images/.tmp',
+        autoSaveBaseline: true,
+        blockOutStatusBar: true,
+        blockOutToolBar: true,
+        // clearRuntimeFolder: true,
+      }
+    ],
+  ],
   framework: 'mocha',
+  reporters: ['spec'],
   mochaOpts: {
     ui: 'bdd',
-    timeout: 900000, //10 minutes
+    timeout: 900000
   },
-  logLevel: 'silent'
+  before() {
+    browser.setWindowSize(1440, 900);
+  },
+
+  beforeSuite() {
+    Auth.login()
+  },
+
+  afterSuite() {
+    Auth.logout()
+  },
 };

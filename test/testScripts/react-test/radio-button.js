@@ -1,4 +1,3 @@
-const common = require('../../utils/common');
 const Helper = require('../../helper/main.js')
 
 const XPATH_RADIO = '.radio-render .kuc-input-radio';
@@ -34,16 +33,9 @@ const XPATH_RADIO_ON_CALL_BUTTON = '//div[@class="radio-onCall"]//label[contains
 
 
 describe('kintoneUIComponent - Button', function () {
-    before(() => {
-        common.logInSlash();
-    });
-    after(() => {
-        common.logOutSlash();
-    });
-
     it('[RadioButton-2] Verify that the Radio Button have the  UI is the same as Radio Button on kintone', function () {
         Helper.ElementHandler
-            .verifyElementVisible(XPATH_RADIO)
+            .verifyElementDisplayed(XPATH_RADIO)
             .verifyElementPosition(XPATH_RADIO, 'position', 'static')
             .verifyElementColor(XPATH_RADIO, 'color', '#333333')
     });
@@ -51,7 +43,7 @@ describe('kintoneUIComponent - Button', function () {
     it('[RadioButton-6] Verify that can create a Radio Button with full options default value', function () {
         Helper.ElementHandler
             .verifyAttribute(XPATH_RADIO_RENDER, 'name', 'radio-render')
-            .verifyElementVisible(XPATH_RADIO)
+            .verifyElementDisplayed(XPATH_RADIO)
             .verifyElementEnabled(XPATH_RADIO)
     });
 
@@ -59,16 +51,16 @@ describe('kintoneUIComponent - Button', function () {
         let XPATH_RADIO_ADD_ITEMS_2 = ".radio-add .kuc-input-radio-item:nth-child(2)"
         Helper.ElementHandler
             .click(XPATH_RADIO_ADD_ITEMS_BUTTON)
-            .verifyElementVisible(XPATH_RADIO_ADD_ITEMS)
+            .verifyElementDisplayed(XPATH_RADIO_ADD_ITEMS)
             .verifyText(XPATH_RADIO_ADD_ITEMS_2, 'Lemon')
     });
 
     it('[RadioButton-37] Verify that can remove an item to the Radio Button list with full value for item', function () {
         Helper.ElementHandler
-            .verifyElementVisible(XPATH_RADIO_REMOVE_ITEMS)
+            .verifyElementDisplayed(XPATH_RADIO_REMOVE_ITEMS)
             .verifyText(XPATH_RADIO_REMOVE_ITEMS, 'Lemon')
             .click(XPATH_LABEL_REMOVE_ITEMS_BUTTON)
-            .verifyElementNotVisible(XPATH_RADIO_REMOVE_ITEMS)
+            .verifyElementNotDisplayed(XPATH_RADIO_REMOVE_ITEMS)
             .verifyElementNotExisting(XPATH_RADIO_REMOVE_ITEMS)
     });
     it('[RadioButton-46-47] Verify the return list have the same value of item with the Radio Button list', function () {
@@ -95,7 +87,7 @@ describe('kintoneUIComponent - Button', function () {
     });
     it('[RadioButton-52] Verify can get the value of the selected item for invisible radio button', function () {
         Helper.ElementHandler
-            .verifyElementNotVisible(XPATH_INVISIBLE_RADIO_GET_VALUE)
+            .verifyElementNotDisplayed(XPATH_INVISIBLE_RADIO_GET_VALUE)
             .click(XPATH_INVISIBLE_RADIO_GET_VALUE_BUTTON)
             .verifyAlertText('Banana')
     });
@@ -140,15 +132,15 @@ describe('kintoneUIComponent - Button', function () {
     });
     it('[RadioButton-69] Verify that can show invisible radiobutton on UI', function () {
         Helper.ElementHandler
-            .verifyElementNotVisible(XPATH_RADIO_SHOW)
+            .verifyElementNotDisplayed(XPATH_RADIO_SHOW)
             .click(XPATH_RADIO_DISPLAY_BUTTON)
-            .verifyElementVisible(XPATH_RADIO_SHOW)
+            .verifyElementDisplayed(XPATH_RADIO_SHOW)
     });
     it('[RadioButton-71] Verify that can hide the visible radiobutton on UI', function () {
         Helper.ElementHandler
-            .verifyElementVisible(XPATH_RADIO_HIDE)
+            .verifyElementDisplayed(XPATH_RADIO_HIDE)
             .click(XPATH_RADIO_NONDE_DISPLAY_BUTTON)
-            .verifyElementNotVisible(XPATH_RADIO_HIDE)
+            .verifyElementNotDisplayed(XPATH_RADIO_HIDE)
     });
     it('[RadioButton-73] Verify that can disable the current enable radiobutton on UI', function () {
         Helper.ElementHandler

@@ -1,4 +1,3 @@
-const common = require('../../utils/Common.js');
 const Helper = require('../../helper/main.js');
 
 const ICON_FULL_OPTIONS = "//div[@id='icon-full-options']//button[contains(@class,'kuc-icon-btn')]";
@@ -30,13 +29,6 @@ const ICON_SET_SHAPE_CIRCLE_BUTTON = "//button[text()='Set Shape Circle']";
 const ICON_ON_TRIGGER = "//div[@id='icon-on-trigger']/button[contains(@class,'kuc-icon-btn')]";
 
 describe('kintoneUIComponent - Icon button', function () {
-    before(() => {
-        common.logInSlash();
-    });
-    after(() => {
-        common.logOutSlash();
-    });
-
     it('[Icon-Button-2] should verify UI', function () {
         Helper.ElementHandler
             .waitForElement(ICON_FULL_OPTIONS)
@@ -47,10 +39,10 @@ describe('kintoneUIComponent - Icon button', function () {
     it('[Icon-Button-3-5-6-14-15] should create a Icon Button', function () {
         Helper.ElementHandler
             .waitForElement(ICON_FULL_OPTIONS)
-            .verifyElementVisible(ICON_FULL_OPTIONS)
-            .verifyElementVisible(ICON_ONLY_TYPE)
-            .verifyElementVisible(ICON_ONLY_COLOR)
-            .verifyElementVisible(ICON_DISABLED)
+            .verifyElementDisplayed(ICON_FULL_OPTIONS)
+            .verifyElementDisplayed(ICON_ONLY_TYPE)
+            .verifyElementDisplayed(ICON_ONLY_COLOR)
+            .verifyElementDisplayed(ICON_DISABLED)
     });
 
     it('[Icon-Button-20-21-22-26] should set type for icon button', function () {
@@ -87,7 +79,7 @@ describe('kintoneUIComponent - Icon button', function () {
             .verifyAttribute(ICON_SIZE, 'class', 'small')
 
             .click(ICON_SET_SIZE_NORMAL_BUTTON)
-            .verifyAttribute(ICON_SIZE, 'class', 'large')
+            .verifyAttribute(ICON_SIZE, 'class', 'normal')
     });
 
     it('[Icon-Button-37-38] should set shape for icon button', function () {
@@ -103,13 +95,13 @@ describe('kintoneUIComponent - Icon button', function () {
     it('[Icon-Button-45] should hide visible Icon button on UI', function () {
         Helper.ElementHandler
             .click(ICON_HIDE_BUTTON)
-            .verifyElementNotVisible(ICON_DISABLED)
+            .verifyElementNotDisplayed(ICON_DISABLED)
     });
 
     it('[Icon-Button-43] should show invisible Icon button on UI', function () {
         Helper.ElementHandler
             .click(ICON_SHOW_BUTTON)
-            .verifyElementVisible(ICON_DISABLED)
+            .verifyElementDisplayed(ICON_DISABLED)
     });
 
     it('[Icon-Button-47] should disable Icon button on UI', function () {

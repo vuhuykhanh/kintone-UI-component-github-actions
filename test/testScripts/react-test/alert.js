@@ -1,4 +1,3 @@
-const common = require('../../utils/Common.js');
 const Helper = require('../../helper/main.js');
 
 const SUCCESS_ALERT = "//div[contains(text(),'successAlert')]";
@@ -34,14 +33,7 @@ const ON_CALLBACK_FUNCTION_ALERT = "//div[@id='on-callback-function-alert']";
 const ON_CALLBACK_TRIGGER_ALERT = "//div[@id='on-callback-trigger-alert']";
 
 describe('kintoneUIComponent - Alert', function () {
-    before(() => {
-        common.logInSlash();
-    });
-    after(() => {
-        common.logOutSlash();
-    });
-
-    it('[Alert-2] Success alert should have green (#91c36c) background-color, size, relative position', function () {
+    it('[Alert-2] Verify that the Success Alert have the  UI is the same as Alert on kintone', function () {
         Helper.ElementHandler
             .waitForElement(SUCCESS_ALERT)
             .verifyElementColor(SUCCESS_ALERT, 'background-color', '#91c36c')
@@ -49,7 +41,7 @@ describe('kintoneUIComponent - Alert', function () {
             .verifyElementPosition(SUCCESS_ALERT, 'position', 'relative')
     });
 
-    it('[Alert-3] Error alert should have red (#e74c3c) background-color, size, relative position', function () {
+    it('[Alert-3] Verify that the Error Alert have the UI is the same as Alert on kintone', function () {
         Helper.ElementHandler
             .waitForElement(ERROR_ALERT)
             .verifyElementColor(ERROR_ALERT, 'background-color', '#e74c3c')
@@ -57,31 +49,31 @@ describe('kintoneUIComponent - Alert', function () {
             .verifyElementPosition(ERROR_ALERT, 'position', 'relative')
     });
 
-    it('[Alert-4-5] should create alert with no option', function () {
+    it('[Alert-5] Verify that can create a Alert without any options value', function () {
         Helper.ElementHandler
             .waitForElement(NO_OPTION_ALERT)
             .verifyAttribute(NO_OPTION_ALERT, 'class', 'kuc-alert bg-danger')
             .verifyElementEnabled(NO_OPTION_ALERT)
-            .verifyElementVisible(NO_OPTION_ALERT)
+            .verifyElementDisplayed(NO_OPTION_ALERT)
     });
 
-    it('[Alert-6] should create alert with full option', function () {
+    it('[Alert-6] Verify that can create a Alert with full options value', function () {
         Helper.ElementHandler
             .waitForElement(FULL_OPTION_ALERT)
             .verifyAttribute(FULL_OPTION_ALERT, 'class', 'kuc-alert bg-danger')
             .verifyText(FULL_OPTION_ALERT, 'full option Alert')
-            .verifyElementVisible(FULL_OPTION_ALERT)
+            .verifyElementDisplayed(FULL_OPTION_ALERT)
             .verifyElementEnabled(FULL_OPTION_ALERT)
     });
 
-    it('[Alert-7] should create alert with only options.text', function () {
+    it('[Alert-7] Verify that can create a Alert only with options.text is valid string value', function () {
         Helper.ElementHandler
             .waitForElement(ONLY_TEXT_ALERT)
-            .verifyElementVisible(ONLY_TEXT_ALERT)
+            .verifyElementDisplayed(ONLY_TEXT_ALERT)
             .verifyText(ONLY_TEXT_ALERT, 'Alert with only text')
     });
 
-    it('[Alert-10] should create alert with only options.type', function () {
+    it('[Alert-10] Verify that can create a Alert with only option.type is error', function () {
         Helper.ElementHandler
             .waitForElement(ONLY_TYPE_ALERT)
             .verifyAttribute(ONLY_TYPE_ALERT, 'class', 'kuc-alert bg-danger')
@@ -90,17 +82,17 @@ describe('kintoneUIComponent - Alert', function () {
             .verifyAttribute(ONLY_TYPE_ALERT, 'class', 'kuc-alert bg-success')
     });
 
-    it('[Alert-14] should create alert with only options.Visible is true', function () {
+    it('[Alert-14] Verify that can create a Alert with only option.isVisible is true', function () {
         Helper.ElementHandler
-            .verifyElementVisible(ONLY_VISIBLE_ALERT);
+            .verifyElementDisplayed(ONLY_VISIBLE_ALERT);
     });
 
-    it('[Alert-15] should create alert with only options.Visible is false', function () {
+    it('[Alert-15] Verify that can create a Alert with only option.isVisibled is false', function () {
         Helper.ElementHandler
-            .verifyElementNotVisible(ONLY_INVISIBLE_ALERT);
+            .verifyElementNotDisplayed(ONLY_INVISIBLE_ALERT);
     });
 
-    it('[Alert-16-17] should set text for Alert which not contain existing text and Alert contain existing text', function () {
+    it('[Alert-17] Verify can set text for Alert which contains existing text', function () {
         Helper.ElementHandler
             .verifyText(SET_TEXT_ALERT, '')
             .click(SET_WITHOUT_TEXT_BUTTON_ALERT)
@@ -109,23 +101,23 @@ describe('kintoneUIComponent - Alert', function () {
             .verifyText(SET_TEXT_ALERT, 'Set text for alert contain existing text')
     });
 
-    it('[Alert-18] should set text for Alert with XSS value', function () {
+    it('[Alert-18] Verify that can set text for Alert with XSS value', function () {
         Helper.ElementHandler
             .verifyText(SET_XSS_VALUE_ALERT, 'Set XSS Value for Alert')
             .click(SET_XSS_VALUE_BUTTON_ALERT)
             .verifyText(SET_XSS_VALUE_ALERT, "alert('123');")
     });
 
-    it('[Alert-20] should set text for invisible alert', function () {
+    it('[Alert-20] Verify can set text for invisible Alert', function () {
         Helper.ElementHandler
-            .verifyElementNotVisible(SET_TEXT_INVISIBLE_ALERT)
+            .verifyElementNotDisplayed(SET_TEXT_INVISIBLE_ALERT)
             .click(SET_TEXT_INVISIBLE_BUTTON_ALERT)
             .click(SHOW_TEXT_INVISIBLE_BUTTON_ALERT)
-            .verifyElementVisible(SET_TEXT_INVISIBLE_ALERT)
+            .verifyElementDisplayed(SET_TEXT_INVISIBLE_ALERT)
             .verifyText(SET_TEXT_INVISIBLE_ALERT, 'Alert after set text')
     });
 
-    it('[Alert-22-23] should set type for alert', function () {
+    it('[Alert-23] Verify can set success type for Alert', function () {
         Helper.ElementHandler
             .verifyAttribute(SET_TYPE_ALERT, 'class', 'kuc-alert bg-danger')
             .click(SET_SUCCESS_TYPE_BUTTON_ALERT)
@@ -134,40 +126,40 @@ describe('kintoneUIComponent - Alert', function () {
             .verifyAttribute(SET_TYPE_ALERT, 'class', 'kuc-alert bg-danger')
     });
 
-    it('[Alert-24] should set type for invisible alert', function () {
+    it('[Alert-24] Verify can set type for invisible Alert', function () {
         Helper.ElementHandler
-            .verifyElementNotVisible(SET_TYPE_INVISIBLE_ALERT)
+            .verifyElementNotDisplayed(SET_TYPE_INVISIBLE_ALERT)
             .click(SET_TYPE_INVISIBLE_BUTTON_ALERT)
             .click(SHOW_TYPE_INVISIBLE_BUTTON_ALERT)
-            .verifyElementVisible(SET_TYPE_INVISIBLE_ALERT)
+            .verifyElementDisplayed(SET_TYPE_INVISIBLE_ALERT)
             .verifyAttribute(SET_TYPE_INVISIBLE_ALERT, 'class', 'kuc-alert bg-success')
     });
 
-    it('[Alert-27-28] should show invisible Alert and visible Alert on UI', function () {
+    it('[Alert-27] Verify that can show invisible Button on UI', function () {
         Helper.ElementHandler
-            .verifyElementNotVisible(INVISIBLE_SHOW_ALERT)
-            .verifyElementVisible(VISIBLE_SHOW_ALERT)
+            .verifyElementNotDisplayed(INVISIBLE_SHOW_ALERT)
+            .verifyElementDisplayed(VISIBLE_SHOW_ALERT)
             .click(SHOW_BUTTON_ALERT)
-            .verifyElementVisible(INVISIBLE_SHOW_ALERT)
-            .verifyElementVisible(VISIBLE_SHOW_ALERT)
+            .verifyElementDisplayed(INVISIBLE_SHOW_ALERT)
+            .verifyElementDisplayed(VISIBLE_SHOW_ALERT)
     });
 
-    it('[Alert-29-30] should hide visible Alert and hide invisible Alert on UI', function () {
+    it('[Alert-29] Verify that can hide the visible Button on UI', function () {
         Helper.ElementHandler
-            .verifyElementVisible(VISIBLE_HIDE_ALERT)
-            .verifyElementNotVisible(INVISIBLE_HIDE_ALERT)
+            .verifyElementDisplayed(VISIBLE_HIDE_ALERT)
+            .verifyElementNotDisplayed(INVISIBLE_HIDE_ALERT)
             .click(HIDE_BUTTON_ALERT)
-            .verifyElementNotVisible(VISIBLE_HIDE_ALERT)
-            .verifyElementNotVisible(INVISIBLE_HIDE_ALERT)
+            .verifyElementNotDisplayed(VISIBLE_HIDE_ALERT)
+            .verifyElementNotDisplayed(INVISIBLE_HIDE_ALERT)
     });
 
-    it('[Alert-35] should register a callback function for click event successfully', function () {
+    it('[Alert-35] Verify that can register a callback function for click event successfully', function () {
         Helper.ElementHandler
             .click(ON_CALLBACK_FUNCTION_ALERT)
             .verifyAlertText('onCallBackFunctionAlert has been clicked')
     });
 
-    it('[Alert-36] should verify that the callback function will be trigger when click on the alert', function () {
+    it('[Alert-36] Verify that the callback function will be trigger when click on the Alert', function () {
         Helper.ElementHandler
             .click(ON_CALLBACK_TRIGGER_ALERT)
             .verifyAlertText('onCallBackTriggerAlert has been clicked')

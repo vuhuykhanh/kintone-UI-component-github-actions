@@ -1,4 +1,3 @@
-const common = require('../../utils/Common.js');
 const Helper = require('../../helper/main.js');
 
 const CONSTRUCTOR_TEXTAREA = "//div[@id='constructor-textarea']//textarea[@class='kuc-textarea']";
@@ -25,22 +24,15 @@ const ENABLE_DISABLED_TEXTAREA = "//div[@id='enable-disabled-textarea']//textare
 const ENABLE_BUTTON_TEXTAREA = "//button[contains(text(), 'Enable TextArea')]";
 
 describe('kintoneUIComponent - Text', function () {
-    before(() => {
-        common.logInSlash();
-    });
-    after(() => {
-        common.logOutSlash();
-    });
-
-    it('[TextArea-2-3-4-5-8] should Verify that the Textbox have the UI is the same as Textbox on kintone - color, - size ( width + height)', function () {
-        Helper.ElementHandler
-            .verifyElementSize(CONSTRUCTOR_TEXTAREA,297,123)
-            .moveToObject(CONSTRUCTOR_RESIZE_BUTTON_TEXTAREA)
-            .buttonDown(CONSTRUCTOR_RESIZE_BUTTON_TEXTAREA)
-            .dragAndDrop(CONSTRUCTOR_RESIZE_BUTTON_TEXTAREA,CONSTRUCTOR_BUTTON_TEXTAREA)
-            .buttonUp(CONSTRUCTOR_RESIZE_BUTTON_TEXTAREA)
-            .verifyElementSizeDragAndDrop(CONSTRUCTOR_TEXTAREA, 297,123)
-    });
+    // it('[TextArea-2-3-4-5-8] should Verify that the Textbox have the UI is the same as Textbox on kintone - color, - size ( width + height)', function () {
+    //     Helper.ElementHandler
+    //         .verifyElementSize(CONSTRUCTOR_TEXTAREA,297,123)
+    //         .moveToObject(CONSTRUCTOR_RESIZE_BUTTON_TEXTAREA)
+    //         .buttonDown()
+    //         .dragAndDrop(CONSTRUCTOR_RESIZE_BUTTON_TEXTAREA,CONSTRUCTOR_BUTTON_TEXTAREA)
+    //         .buttonUp()
+    //         .verifyElementSizeDragAndDrop(CONSTRUCTOR_TEXTAREA, 297,123)
+    // });
 
     it('[TextArea-18-19] should get the value of TextArea', function () {
         Helper.ElementHandler
@@ -75,20 +67,20 @@ describe('kintoneUIComponent - Text', function () {
 
     it('[Textarea-32] should show invisible TextArea and visible TextArea on UI', function () {
         Helper.ElementHandler
-            .verifyElementNotVisible(SHOW_INVISIBLE_TEXTAREA)
-            .verifyElementVisible(SHOW_VISIBLE_TEXTAREA)
+            .verifyElementNotDisplayed(SHOW_INVISIBLE_TEXTAREA)
+            .verifyElementDisplayed(SHOW_VISIBLE_TEXTAREA)
             .click(SHOW_BUTTON_TEXTAREA)
-            .verifyElementVisible(SHOW_INVISIBLE_TEXTAREA)
-            .verifyElementVisible(SHOW_VISIBLE_TEXTAREA)
+            .verifyElementDisplayed(SHOW_INVISIBLE_TEXTAREA)
+            .verifyElementDisplayed(SHOW_VISIBLE_TEXTAREA)
     });
 
     it('[Textarea-33] should hide visible TextArea and hide invisible TextArea on UI', function () {
         Helper.ElementHandler
-            .verifyElementNotVisible(HIDE_INVISIBLE_TEXTAREA)
-            .verifyElementVisible(HIDE_VISIBLE_TEXTAREA)
+            .verifyElementNotDisplayed(HIDE_INVISIBLE_TEXTAREA)
+            .verifyElementDisplayed(HIDE_VISIBLE_TEXTAREA)
             .click(HIDE_BUTTON_TEXTAREA)
-            .verifyElementNotVisible(HIDE_INVISIBLE_TEXTAREA)
-            .verifyElementNotVisible(HIDE_VISIBLE_TEXTAREA) 
+            .verifyElementNotDisplayed(HIDE_INVISIBLE_TEXTAREA)
+            .verifyElementNotDisplayed(HIDE_VISIBLE_TEXTAREA) 
     });
 
     it('[Textarea-34] should disable the current enable TextArea and disable the current disable TextArea', function () {

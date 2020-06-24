@@ -1,4 +1,3 @@
-const common = require('../../utils/common');
 const Helper = require('../../helper/main.js')
 
 const XPATH_NOTIFY_SUCCESS = '.notifySuccess-render .kuc-notify';
@@ -31,12 +30,6 @@ const XPATH_NOTIFY_ON_CALL_CLOSE = '.notify-onCall .kuc-close-button';
 
 
 describe('kintoneUIComponent - Button', function () {
-    before(() => {
-        common.logInSlash();
-    });
-    after(() => {
-        common.logOutSlash();
-    });
     it('[Notify-2] Verify that the Success NotifyPopup have the  UI is the same as NotifyPopup on kintone', function () {
         Helper.ElementHandler
             .click(XPATH_NOTIFY_SUCCESS_SHOW)
@@ -56,15 +49,15 @@ describe('kintoneUIComponent - Button', function () {
     it('[Notify-5] Verify that when user click on the close icon, the popup will disappear', function () {
         Helper.ElementHandler
             .click(XPATH_NOTIFY_ERROR_SHOW)
-            .verifyElementVisible(XPATH_NOTIFY_ERROR)
+            .verifyElementDisplayed(XPATH_NOTIFY_ERROR)
             .click(XPATH_NOTIFY_ERROR_CLOSE)
-            .verifyElementNotVisible(XPATH_NOTIFY_ERROR)
+            .verifyElementNotDisplayed(XPATH_NOTIFY_ERROR)
             .verifyElementNotExisting(XPATH_NOTIFY_ERROR)
     });
-    it('[Notify-6-16] Verify that the Error NotifyPopup have the UI is the same as NotifyPopup on kintone', function () {
+    it('[Notify-6] Verify that can create a NotifyPopup without any options value', function () {
         Helper.ElementHandler
             .click(XPATH_NOTIFY_WITHOUT_OPTION_SHOW)
-            .verifyElementVisible(XPATH_NOTIFY_WITHOUT_OPTION)
+            .verifyElementDisplayed(XPATH_NOTIFY_WITHOUT_OPTION)
             .verifyAttribute(XPATH_NOTIFY_WITHOUT_OPTION, 'class', 'bg-danger')
             .click(XPATH_NOTIFY_WITHOUT_OPTION_CLOSE)
     });
@@ -91,10 +84,10 @@ describe('kintoneUIComponent - Button', function () {
             .verifyText(XPATH_NOTIFY_SET_TEXT_BLANK_VALUE, '')
             .click(XPATH_NOTIFY_SET_TEXT_BLANK_CLOSE)
     });
-    it('[Notify-25-32] Verify can set error type for NotifyPopup', function () {
+    it('[Notify-25] Verify can set error type for NotifyPopup', function () {
         Helper.ElementHandler
             .click(XPATH_NOTIFY_SET_TYPE_SHOW)
-            .verifyElementVisible(XPATH_NOTIFY_SET_TYPE_VALUE)
+            .verifyElementDisplayed(XPATH_NOTIFY_SET_TYPE_VALUE)
             .verifyAttribute(XPATH_NOTIFY_SET_TYPE_VALUE, 'class', 'bg-success')
             .click(XPATH_NOTIFY_SET_TYPE_BUTTON)
             .verifyAttribute(XPATH_NOTIFY_SET_TYPE_VALUE, 'class', 'bg-danger')
@@ -103,12 +96,12 @@ describe('kintoneUIComponent - Button', function () {
     it('[Notify-34] Verify that can hide the visible NotifyPopup on UI', function () {
         Helper.ElementHandler
             .click(XPATH_NOTIFY_SET_HIDE_SHOW)
-            .verifyElementVisible(XPATH_NOTIFY_SET_HIDE_VALUE)
+            .verifyElementDisplayed(XPATH_NOTIFY_SET_HIDE_VALUE)
             .click(XPATH_NOTIFY_SET_HIDE_BUTTON)
-            .verifyElementNotVisible(XPATH_NOTIFY_SET_HIDE_VALUE)
+            .verifyElementNotDisplayed(XPATH_NOTIFY_SET_HIDE_VALUE)
             .verifyElementNotExisting(XPATH_NOTIFY_SET_HIDE_VALUE)
     });
-    it('[Notify-40-41] Verify that the callback function will be triggered when clicking on that NotifyPopup', function () {
+    it('[Notify-41] Verify that the callback function will be triggered when clicking on that NotifyPopup', function () {
         Helper.ElementHandler
             .click(XPATH_NOTIFY_ON_CALL_SHOW)
             .click(XPATH_NOTIFY_ON_CALL)

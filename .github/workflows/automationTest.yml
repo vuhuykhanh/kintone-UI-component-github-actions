@@ -2,41 +2,34 @@ name: Automation Test
 
 on:
   repository_dispatch:
-    types: kuc-trigger-auto-test
-  push:
-    branches:
-      - master
+    types: do-something
 
 jobs:
-  automation_test:
-    name: Run automation test kintone-ui-component
+  build:
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
-    - name: Install chrome
+        node-version: ${{ matrix.node-version }}
+    - name: install chrome
       run: |
         sudo apt-get update 
         sudo apt-get install google-chrome-stable 
-    - name: Install package
-      run: |
-        npm install
-    - name: Get latest build kintone-ui-component
-      uses: ./actions/get_latest_build
-      id: get_latest_build
-      with:
-        branches: master
-    - name: Install latest build kintone-ui-component
-      run: |
-        npm install ${{steps.get_latest_build.outputs.files}}
-    - name: Preparation source
-      run: |
-        domain=${{secrets.DOMAIN}} appID=${{secrets.APPID}} username=${{secrets.USERNAME}} password=${{secrets.PASSWORD}} test=${{secrets.TEST_JS}} npm run preparation
-    - name: Run test
-      if: success()
-      run: |
-        domain=${{secrets.DOMAIN}} appID=${{secrets.APPID}} username=${{secrets.USERNAME}} password=${{secrets.PASSWORD}} test=${{secrets.TEST_JS}} npm run test
+    - name: install package
+      run:  npm install
+    # - name: install environment data
+    #   run: npm install https://${{secrets.ACCESS_TOKEN}}:x-oauth-basic@github.com/luckhiem/environment-data.git
+    - name: preparation source
+      run: npm run preparation
+    - name: run test
+      run: npm run test
       env:
         CI: true

@@ -1,4 +1,3 @@
-const common = require('../../utils/Common.js');
 const Helper = require('../../helper/main.js');
 
 const XPATH_MULTIPLE = '.multiple-render .kuc-multiple-list';
@@ -43,12 +42,6 @@ const XPATH_MULTIPLE_LIST_VALUE = '.multiple-render .kuc-list-item-label';
 const iconCheck = 'M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z'
 
 describe('kintoneUIComponent - Button', function () {
-    before(() => {
-        common.logInSlash();
-    });
-    after(() => {
-        common.logOutSlash();
-    });
     it('[MultipleChoice-2] Verify that the MultipleChoice have the  UI is the same as MultipleChoice on kintone', function () {
         Helper.ElementHandler
             .verifyElementColor(XPATH_MULTIPLE, 'background-color', '#ffffff')
@@ -63,7 +56,7 @@ describe('kintoneUIComponent - Button', function () {
     it('[MultipleChoice-6] Verify that can create a MultipleChoice with full options default value', function () {
         Helper.ElementHandler
             .verifyText(XPATH_MULTIPLE_LIST_VALUE, 'Orange')
-            .verifyElementVisible(XPATH_MULTIPLE)
+            .verifyElementDisplayed(XPATH_MULTIPLE)
             .verifyElementEnabled(XPATH_MULTIPLE)
     });
     it('[MultipleChoice-16] Verify that can create a MultipleChoice with full options default value', function () {
@@ -79,7 +72,7 @@ describe('kintoneUIComponent - Button', function () {
     });
     it('[MultipleChoice-23-24] Verify that can add an item to the MultipleChoice with only item.value', function () {
         Helper.ElementHandler
-            .verifyElementNotVisible(XPATH_INVISIBLE_MULTIPLE_ADD_ITEMS)
+            .verifyElementNotDisplayed(XPATH_INVISIBLE_MULTIPLE_ADD_ITEMS)
             .click(XPATH_INVISIBLE_MULTIPLE_ADD_ITEMS_BUTTON)
             .verifyText(XPATH_INVISIBLE_MULTIPLE_ADD_ITEMS, '')
     });
@@ -120,7 +113,7 @@ describe('kintoneUIComponent - Button', function () {
             isDisabled: true
         }
         Helper.ElementHandler
-            .verifyElementVisible(XPATH_MULTIPLE_GET_ITEMS_INDEX_BUTTON)
+            .verifyElementDisplayed(XPATH_MULTIPLE_GET_ITEMS_INDEX_BUTTON)
             .click(XPATH_MULTIPLE_GET_ITEMS_INDEX_BUTTON)
             .verifyAlertText(JSON.stringify(items))
     });
@@ -166,21 +159,21 @@ describe('kintoneUIComponent - Button', function () {
     });
     it('[MultipleChoice-71] Verify can set enable for existing disable item by the valid value for invisible MultipleChoice', function () {
         Helper.ElementHandler
-            .verifyElementNotVisible(XPATH_INVISIBLE_MULTIPLE_ENABLE_ITEMS)
+            .verifyElementNotDisplayed(XPATH_INVISIBLE_MULTIPLE_ENABLE_ITEMS)
             .click(XPATH_INVISIBLE_MULTIPLE_ENABLE_ITEMS_BUTTON)
             .verifyAttributeIsNotIncludeValue(XPATH_INVISIBLE_MULTIPLE_ENABLE_ITEMS, 'class', 'kuc-list-item-disable')
     });
     it('[MultipleChoice-75] Verify that can show invisible MultipleChoice on UI', function () {
         Helper.ElementHandler
-            .verifyElementNotVisible(XPATH_MULTIPLE_SHOW)
+            .verifyElementNotDisplayed(XPATH_MULTIPLE_SHOW)
             .click(XPATH_MULTIPLE_DISPLAY_BUTTON)
-            .verifyElementVisible(XPATH_MULTIPLE_SHOW)
+            .verifyElementDisplayed(XPATH_MULTIPLE_SHOW)
     });
     it('[MultipleChoice-77] Verify that can hide the visible MultipleChoice on UI', function () {
         Helper.ElementHandler
-            .verifyElementVisible(XPATH_MULTIPLE_HIDE)
+            .verifyElementDisplayed(XPATH_MULTIPLE_HIDE)
             .click(XPATH_MULTIPLE_NON_DISPLAY_BUTTON)
-            .verifyElementNotVisible(XPATH_MULTIPLE_HIDE)
+            .verifyElementNotDisplayed(XPATH_MULTIPLE_HIDE)
     });
     it('[MultipleChoice-79] Verify that can disable the current enable MultipleChoice on UI', function () {
         Helper.ElementHandler

@@ -3,8 +3,8 @@ const Helper = require('../../helper/main')
 
 const XPATH_CONSTRUCTOR_COLORPICKER = "//div[@id='constructor-colorpicker']//div/input";
 const XPATH_CONSTRUCTOR_COLORPICKER_CANCEL_BUTTON = "//div[@id='constructor-colorpicker']//button[@class='kuc-btn normal']";
-const XPATH_CONSTRUCTOR_COLORPICKER_SATURATION = "//div[@id='constructor-colorpicker']/div[position()=2]/div[position()=1]//canvas";
-const XPATH_CONSTRUCTOR_COLORPICKER_HUE = "//div[@id='constructor-colorpicker']/div[position()=2]/div[position()=2]//canvas";
+const XPATH_CONSTRUCTOR_COLORPICKER_SATURATION = "//div[@id='constructor-colorpicker']/div/div[position()=2]/div[position()=1]//canvas";
+const XPATH_CONSTRUCTOR_COLORPICKER_HUE = "//div[@id='constructor-colorpicker']/div/div[position()=2]/div[position()=2]//canvas";
 const XPATH_CONSTRUCTOR_COLORPICKER_HEX_FIELD = "//div[@id='colorpicker-content']//input[@id='hex-value']";
 const XPATH_CONSTRUCTOR_COLORPICKER_RGB_R_FIELD = "//div[@id='colorpicker-content']//div[position()=3]/div[position()=1]//div[position()=1]//input";
 const XPATH_CONSTRUCTOR_COLORPICKER_RGB_G_FIELD = "//div[@id='colorpicker-content']//div[position()=3]/div[position()=1]//div[position()=2]//input";
@@ -13,21 +13,21 @@ const XPATH_CONSTRUCTOR_COLORPICKER_HUE_H_FIELD = "//div[@id='colorpicker-conten
 const XPATH_CONSTRUCTOR_COLORPICKER_HUE_U_FIELD = "//div[@id='colorpicker-content']//div[position()=3]/div[position()=2]//div[position()=2]//input";
 const XPATH_CONSTRUCTOR_COLORPICKER_HUE_E_FIELD = "//div[@id='colorpicker-content']//div[position()=3]/div[position()=2]//div[position()=3]//input";
 const XPATH_GET_COLOR_COLORPICKER = "//div[@id='get-color-colorpicker']//div/input";
-const XPATH_GET_COLOR_COLORPICKER_BUTTON = "//button[contains(text(), 'Get Color of ColorPicker')]";
+const XPATH_GET_COLOR_COLORPICKER_BUTTON = "//button[contains(text(), 'Get Color of Colorpicker')]";
 const XPATH_SET_COLOR_COLORPICKER = "//div[@id='set-color-colorpicker']//div/input";
-const XPATH_SET_COLOR_COLORPICKER_BUTTON = "//button[contains(text(), 'Set Color of ColorPicker')]";
+const XPATH_SET_COLOR_COLORPICKER_BUTTON = "//button[contains(text(), 'Set Color of Colorpicker')]";
 const XPATH_SHOW_COLORPICKER = "//div[@id='show-colorpicker']//div/input";
-const XPATH_SHOW_COLORPICKER_BUTTON = "//button[contains(text(), 'Show ColorPicker')]";
+const XPATH_SHOW_COLORPICKER_BUTTON = "//button[contains(text(), 'Show Colorpicker')]";
 const XPATH_HIDE_COLORPICKER = "//div[@id='hide-colorpicker']//div/input";
-const XPATH_HIDE_COLORPICKER_BUTTON = "//button[contains(text(), 'Hide ColorPicker')]";
+const XPATH_HIDE_COLORPICKER_BUTTON = "//button[contains(text(), 'Hide Colorpicker')]";
 const XPATH_DISABLE_COLORPICKER = "//div[@id='disable-colorpicker']//div/input";
-const XPATH_DISABLE_COLORPICKER_BUTTON = "//button[contains(text(), 'Disable ColorPicker')]";
+const XPATH_DISABLE_COLORPICKER_BUTTON = "//button[contains(text(), 'Disable Colorpicker')]";
 const XPATH_ENABLE_COLORPICKER = "//div[@id='enable-colorpicker']//div/input";
-const XPATH_ENABLE_COLORPICKER_BUTTON = "//button[contains(text(), 'Enable ColorPicker')]";
+const XPATH_ENABLE_COLORPICKER_BUTTON = "//button[contains(text(), 'Enable Colorpicker')]";
 const XPATH_CALLBACK_COLORPICKER = "//div[@id='on-callback-colorpicker']//div/input";
 const XPATH_CALLBACK_COLORPICKER_BUTTON = "//div[@id='on-callback-colorpicker']//button[@class='kuc-btn submit']"
-const XPATH_TRIGGER_COLORPICKER = "//div[@id='callback-trigger-colorpicker']//div/input";
-const XPATH_TRIGGER_COLORPICKER_BUTTON = "//div[@id='callback-trigger-colorpicker']//button[@class='kuc-btn submit']"
+const XPATH_TRIGGER_COLORPICKER = "//div[@id='on-callback-colorpicker']//div/input";
+const XPATH_TRIGGER_COLORPICKER_BUTTON = "//div[@id='on-callback-colorpicker']//button[@class='kuc-btn submit']"
 
 describe('kintoneUIComponent - Alert', () => {
   it('[Colorpicker-2-3-4-7] should checking HEX input field, ColorPicker popup window displayed, operation of Saturation,Hue,RGB input, full option ColorPicker  ', function () {
@@ -87,7 +87,7 @@ describe('kintoneUIComponent - Alert', () => {
 
   it('[Colorpicker-23] should set color of Colorpicker by using setColor()', () => {
     Helper.ElementHandler
-      .verifyValue(XPATH_SET_COLOR_COLORPICKER, '#00B7FF')
+      .verifyValue(XPATH_SET_COLOR_COLORPICKER, '#ecd110')
       .click(XPATH_SET_COLOR_COLORPICKER_BUTTON)
       .verifyValue(XPATH_SET_COLOR_COLORPICKER, '#e74c3c')
   });
@@ -131,6 +131,6 @@ describe('kintoneUIComponent - Alert', () => {
     Helper.ElementHandler
       .click(XPATH_TRIGGER_COLORPICKER)
       .click(XPATH_TRIGGER_COLORPICKER_BUTTON)
-      .verifyAlertText('onCallbackTriggerAlert has been clicked')
+      .verifyAlertText('onCallbackFunctionColorPicker has been clicked')
   });
 })

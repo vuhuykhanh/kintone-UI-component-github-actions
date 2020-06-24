@@ -13,41 +13,41 @@ const DELETE_JS_LOCATOR = '//div[@id="jsFiles_DESKTOP-filelist"]//button[contain
 const DELETE_CSS_LOCATOR = '//div[@id="jsFiles_DESKTOP_CSS-filelist"]//button[contains(@id,"remove")][1]';
 const UPLOAD_JS_LINK_BUTTON_LOCATOR = '//*[@id="jsFiles_DESKTOP-container"]//span[@class="gaia-customize-url-button-text"]'
 const UPLOAD_JS_LINK_INPUT_LOCATOR = '//input[@id="url-:v-text"]'
-const sourceFolder = path.join(__dirname, '..', '..', '..', 'kintoneUIComponent', `${CONFIG.folderTest}`);
+const sourceFolder = path.join(__dirname, '..', '..', '..', 'components', `${CONFIG.folderTest}`);
 
 class JsCssCustomization {
     navigate() {
         Helper.BrowserHandler.navigate(CONSTANT.PATH.APP_SETTING_JS_CUSTOMIZE)
         Helper.ElementHandler.verifyTitle('JavaScript and CSS Customization');
-        Helper.ElementHandler.waitForElementExit(JS_FILES_LIST_LOCATOR);
+        Helper.ElementHandler.waitForElement(JS_FILES_LIST_LOCATOR);
         return this;
     };
 
     _addJSFiles(filePath) {
-        Helper.ElementHandler.waitForElementExit(UPLOAD_JS_FILE_PC_LOCATOR);
-        browser.chooseFile(UPLOAD_JS_FILE_PC_LOCATOR, filePath);
+        Helper.ElementHandler.waitForElement(UPLOAD_JS_FILE_PC_LOCATOR);
+        $(UPLOAD_JS_FILE_PC_LOCATOR).setValue(filePath);
         return this;
     };
 
     _addCSSFiles(filePath) {
-        Helper.ElementHandler.waitForElementExit(UPLOAD_CSS_FILE_PC_LOCATOR);
-        browser.chooseFile(UPLOAD_CSS_FILE_PC_LOCATOR, filePath);
+        Helper.ElementHandler.waitForElement(UPLOAD_CSS_FILE_PC_LOCATOR);
+        $(UPLOAD_CSS_FILE_PC_LOCATOR).setValue(filePath);
         return this;
     };
 
     _addJSLink(link) {
-        Helper.ElementHandler.waitForElementExit(UPLOAD_JS_LINK_BUTTON_LOCATOR)
+        Helper.ElementHandler.waitForElement(UPLOAD_JS_LINK_BUTTON_LOCATOR)
         $(UPLOAD_JS_LINK_BUTTON_LOCATOR).click();
-        Helper.ElementHandler.waitForElementExit(UPLOAD_JS_LINK_INPUT_LOCATOR)
+        Helper.ElementHandler.waitForElement(UPLOAD_JS_LINK_INPUT_LOCATOR)
         $(UPLOAD_JS_LINK_INPUT_LOCATOR).setValue(link);
         return this;
     };
 
     deleteAllJSFiles() {
-        while ($(DELETE_JS_LOCATOR).isVisible()) {
+        while ($(DELETE_JS_LOCATOR).isExisting()) {
             $(DELETE_JS_LOCATOR).click();
         }
-        while ($(DELETE_CSS_LOCATOR).isVisible()) {
+        while ($(DELETE_CSS_LOCATOR).isExisting()) {
             $(DELETE_CSS_LOCATOR).click();
         }
         return this;
@@ -85,11 +85,11 @@ class JsCssCustomization {
         }
         for (let fileName of result) {
             if (fileName.includes('.js')) {
-                const filePath = path.join(__dirname, '..', '..', '..', 'kintoneUIComponent', `${CONFIG.folderTest}`, `${fileName}`);
+                const filePath = path.join(__dirname, '..', '..', '..', 'components', `${CONFIG.folderTest}`, `${fileName}`);
                 this._addJSFiles(filePath);
             }
             else if (fileName.includes('.css')) {
-                const filePath = path.join(__dirname, '..', '..', '..', 'kintoneUIComponent', `${CONFIG.folderTest}`, `${fileName}`);
+                const filePath = path.join(__dirname, '..', '..', '..', 'components', `${CONFIG.folderTest}`, `${fileName}`);
                 this._addCSSFiles(filePath);
             }
         };

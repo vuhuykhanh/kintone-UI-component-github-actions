@@ -1,4 +1,3 @@
-const common = require('../../utils/Common.js');
 const Helper = require('../../helper/main');
 
 const FULL_OPTIONS_NOTIFY = "//div[@id='full-option-notifypopup']//div[@class='kuc-notify bg-danger']";
@@ -20,13 +19,6 @@ const ON_TRIGGER_NOTIFY_SHOW_BUTTON = "//button[text()='Show Notify On Trigger']
 const ON_TRIGGER_NOTIFY_CLOSE_BUTTON = "//div[@id='on-callback-trigger-notifypopup']//div[@class='kuc-close-button']//button"
 
 describe('kintoneUIComponent - Notify Popup', function () {
-    before(() => {
-        common.logInSlash();
-    });
-    after(() => {
-        common.logOutSlash();
-    });
-
     it('[Notify-2] should verify success notify', function () {
         Helper.ElementHandler
             .click(ON_TRIGGER_NOTIFY_SHOW_BUTTON)
@@ -47,14 +39,14 @@ describe('kintoneUIComponent - Notify Popup', function () {
         Helper.ElementHandler
             .click(FULL_OPTIONS_NOTIFY_SHOW_BUTTON)
             .click(FULL_OPTIONS_NOTIFY_CLOSE_BUTTON)
-            .verifyElementNotVisible(FULL_OPTIONS_NOTIFY)
+            .verifyElementNotDisplayed(FULL_OPTIONS_NOTIFY)
     });
 
     it('[Notify-6] should create a NotifyPopup without any options value', function () {
         Helper.ElementHandler
             .click(NO_OPTIONS_NOTIFY_SHOW_BUTTON)
             .waitForElement(NO_OPTIONS_NOTIFY)
-            .verifyElementVisible(NO_OPTIONS_NOTIFY)
+            .verifyElementDisplayed(NO_OPTIONS_NOTIFY)
             .click(NO_OPTIONS_NOTIFY_CLOSE_BUTTON)
     });
 
@@ -78,21 +70,21 @@ describe('kintoneUIComponent - Notify Popup', function () {
             .click(NO_OPTIONS_NOTIFY_SET_TYPE_BUTTON)
             .click(NO_OPTIONS_NOTIFY_SHOW_BUTTON)
             .waitForElement(NO_OPTIONS_NOTIFY_TYPE_SUCCESS)
-            .verifyElementVisible(NO_OPTIONS_NOTIFY_TYPE_SUCCESS)
+            .verifyElementDisplayed(NO_OPTIONS_NOTIFY_TYPE_SUCCESS)
             .click(NO_OPTIONS_NOTIFY_CLOSE_BUTTON)
     });
 
     it('[Notify-34] should hide visible notify on UI', function () {
         Helper.ElementHandler
             .click(NO_OPTIONS_NOTIFY_HIDE_BUTTON)
-            .verifyElementNotVisible(NO_OPTIONS_NOTIFY)
+            .verifyElementNotDisplayed(NO_OPTIONS_NOTIFY)
     });
 
     it('[Notify-32] should show invisible notify on UI', function () {
         Helper.ElementHandler
             .click(NO_OPTIONS_NOTIFY_SHOW_BUTTON)
             .waitForElement(NO_OPTIONS_NOTIFY)
-            .verifyElementVisible(NO_OPTIONS_NOTIFY)
+            .verifyElementDisplayed(NO_OPTIONS_NOTIFY)
             .click(NO_OPTIONS_NOTIFY_HIDE_BUTTON)
     });
 

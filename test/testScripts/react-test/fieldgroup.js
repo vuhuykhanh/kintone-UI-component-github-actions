@@ -1,7 +1,5 @@
-const common = require('../../utils/Common.js');
 const Helper = require('../../helper/main.js')
 
-// const CONSTRUCTOR_FIELDGROUP = "//div[@id='constructor-fieldgroup']//div[@class='kuc-fieldgroup']//ul[@class='kuc-fieldgroup-container']//li";
 const COMPONENT_CONTENT_FIELDGROUP = "//div[@id='constructor-fieldgroup']//div[@class='kuc-fieldgroup']//div[@class='kuc-fieldgroup-container']//div[@class='kuc-fieldgroup-contents']//div[@id='component-container-fieldgroup']";
 const TOGGLE_BUTTON_FIELDGROUP = "//div[@id='constructor-fieldgroup']/div[@class='kuc-fieldgroup']/div[@class='kuc-fieldgroup-container']/span";
 const SET_CONTENT_FIELDGROUP = "//div[@id='set-content-fieldgroup']//div[@class='kuc-fieldgroup']//div[@class='kuc-fieldgroup-container']//div[@class='kuc-fieldgroup-contents']";
@@ -17,13 +15,6 @@ const SET_TOGGLE_BUTTON_FIELDGROUP = "//div[@id='set-toggle-fieldgroup']//button
 const GET_TOGGLE_BUTTON_FIELDGROUP = "//div[@id='get-toggle-fieldgroup']//button[contains(text(), 'Get Toggle FieldGroup')]";
 
 describe('kintoneUIComponent - Text', function () {
-    before(() => {
-        common.logInSlash();
-    });
-    after(() => {
-        common.logOutSlash();
-    });
-
     it('[FieldGroup-3] should Verify the operation of FieldGroup, all below components can be add to table as child component', function () {
         Helper.ElementHandler
             .verifyAttribute(TOGGLE_BUTTON_FIELDGROUP, 'class', 'collapse')
@@ -39,7 +30,7 @@ describe('kintoneUIComponent - Text', function () {
             .verifyElementExisting(COMPONENT_CONTENT_FIELDGROUP + "//div[@class='date-time-container']")
             .verifyElementExisting(COMPONENT_CONTENT_FIELDGROUP + "//div[@class='kuc-dropdown-container']")
             .verifyElementExisting(COMPONENT_CONTENT_FIELDGROUP + "//div[@class='kuc-fieldgroup']")
-            .verifyElementExisting(COMPONENT_CONTENT_FIELDGROUP + "//button[@class='kuc-icon-btn large  gray circle']")
+            .verifyElementExisting(COMPONENT_CONTENT_FIELDGROUP + "//button[@class='kuc-icon-btn normal  gray circle']")
             .verifyElementExisting(COMPONENT_CONTENT_FIELDGROUP + "//div[@class='kuc-label']")
             .verifyElementExisting(COMPONENT_CONTENT_FIELDGROUP + "//div[@class='kuc-multiple-list kuc-list-outer']")
             .verifyElementExisting(COMPONENT_CONTENT_FIELDGROUP + "//div[@class='kuc-label']")

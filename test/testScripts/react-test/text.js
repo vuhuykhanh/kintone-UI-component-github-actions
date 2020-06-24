@@ -1,4 +1,3 @@
-const common = require('../../utils/Common.js');
 const Helper = require('../../helper/main.js');
 
 const CONSTRUCTOR_TEXT = "//div[@id='constructor-text']//input[@class='kuc-input-text']";
@@ -23,14 +22,7 @@ const ON_CALLBACK_FUNCTION_TEXT = "//div[@id='on-callback-function-text']//input
 const ON_CALLBACK_TRIGGER_TEXT = "//div[@id='on-callback-trigger-text']//input";
 
 describe('kintoneUIComponent - Text', function () {
-    before(() => {
-        common.logInSlash();
-    });
-    after(() => {
-        common.logOutSlash();
-    });
-
-    it('[Text-2-4-6] should verify that the Textbox object contains the the below attibutes', function () {
+    it('[Text-2] Verify that the Textbox have the UI is the same as Textbox on kintone', function () {
         Helper.ElementHandler
             .verifyElementColor(CONSTRUCTOR_TEXT, 'background-color', '#ffffff')
             .verifyElementSize(CONSTRUCTOR_TEXT, 165, 48)
@@ -38,7 +30,7 @@ describe('kintoneUIComponent - Text', function () {
             .verifyValue(CONSTRUCTOR_TEXT, 'Constructor Text')
     });
 
-    it('[Text-14-15] should set text for text box which not contain existing text and textbox which contain existing text', function () {
+    it('[Text-14] Verify can set text for text box which contains existing text', function () {
         Helper.ElementHandler
             .waitForElement(SET_VALUE_TEXT)
             .verifyValue(SET_VALUE_TEXT, '')
@@ -48,33 +40,33 @@ describe('kintoneUIComponent - Text', function () {
             .verifyValue(SET_VALUE_TEXT, '123123')
     });
 
-    it('[Text-19] should get value of Text', function () {
+    it('[Text-19] Verify that can get the value of the Text', function () {
         let TextValue = Helper.ElementHandler.getValue(GET_VALUE_TEXT);
         Helper.ElementHandler
             .click(GET_VALUE_BUTTON_TEXT)
             .verifyAlertText(TextValue)
     });
 
-    it('[Text-25] should show invisible Text and visible Text on UI', function () {
+    it('[Text-25] Verify that can show invisible Button on UI', function () {
         Helper.ElementHandler
-            .verifyElementNotVisible(SHOW_INVISIBLE_TEXT)
-            .verifyElementVisible(SHOW_VISIBLE_TEXT)
+            .verifyElementNotDisplayed(SHOW_INVISIBLE_TEXT)
+            .verifyElementDisplayed(SHOW_VISIBLE_TEXT)
             .click(SHOW_BUTTON_TEXT)
-            .verifyElementVisible(SHOW_INVISIBLE_TEXT)
-            .verifyElementVisible(SHOW_VISIBLE_TEXT)
+            .verifyElementDisplayed(SHOW_INVISIBLE_TEXT)
+            .verifyElementDisplayed(SHOW_VISIBLE_TEXT)
     });
 
-    it('[Text-27] should hide the visible Text and invisble Text on UI', function () {
+    it('[Text-27] Verify that can hide the visible Button on UI', function () {
         Helper.ElementHandler
             .waitForElement(HIDE_VISIBLE_TEXT)
-            .verifyElementVisible(HIDE_VISIBLE_TEXT)
-            .verifyElementNotVisible(HIDE_INVISIBLE_TEXT)
+            .verifyElementDisplayed(HIDE_VISIBLE_TEXT)
+            .verifyElementNotDisplayed(HIDE_INVISIBLE_TEXT)
             .click(HIDE_BUTTON_TEXT)
-            .verifyElementNotVisible(HIDE_VISIBLE_TEXT)
-            .verifyElementNotVisible(HIDE_INVISIBLE_TEXT)
+            .verifyElementNotDisplayed(HIDE_VISIBLE_TEXT)
+            .verifyElementNotDisplayed(HIDE_INVISIBLE_TEXT)
     });
 
-    it('[Text-29] should disable the current enabled Text and disable the current disabled Text  on UI', function () {
+    it('[Text-29] Verify that can disable the current enable Button on UI', function () {
         Helper.ElementHandler
             .waitForElement(DISABLE_ENABLED_TEXT)
             .verifyElementEnabled(DISABLE_ENABLED_TEXT)

@@ -1,4 +1,3 @@
-const common = require('../../utils/Common.js');
 const Helper = require('../../helper/main.js');
 
 const CONSTRUCTOR_TABS = "//div[@id='constructor-tabs']//div[@class='kuc-tabs-tabs']//ul[@class='kuc-tabs-tab-list']//li";
@@ -20,13 +19,6 @@ const ENABLE_BUTTON_TABS = "//div[@id='enable-tabs']//button[contains(text(), 'E
 
 
 describe('kintoneUIComponent - Text', function () {
-    before(() => {
-        common.logInSlash();
-    });
-    after(() => {
-        common.logOutSlash();
-    });
-
     it('[Tabs-1-2-3-4-5-6-7-15] should Verify the operation of Tabs, all below components can be add to table as child component', function () {
         Helper.ElementHandler
             .verifyNumberOfElements(CONSTRUCTOR_TABS, 4)
@@ -38,7 +30,7 @@ describe('kintoneUIComponent - Text', function () {
             .verifyElementExisting(COMPONENT_CONTENT_TABS + "//div[@class='date-time-container']")
             .verifyElementExisting(COMPONENT_CONTENT_TABS + "//div[@class='kuc-dropdown-container']")
             .verifyElementExisting(COMPONENT_CONTENT_TABS + "//div[@class='kuc-fieldgroup']")
-            .verifyElementExisting(COMPONENT_CONTENT_TABS + "//button[@class='kuc-icon-btn large  gray circle']")
+            .verifyElementExisting(COMPONENT_CONTENT_TABS + "//button[@class='kuc-icon-btn normal  gray circle']")
             .verifyElementExisting(COMPONENT_CONTENT_TABS + "//div[@class='kuc-label']")
             .verifyElementExisting(COMPONENT_CONTENT_TABS + "//div[@class='kuc-multiple-list kuc-list-outer']")
             .verifyElementExisting(COMPONENT_CONTENT_TABS + "//div[@class='kuc-input-radio']")
@@ -75,9 +67,13 @@ describe('kintoneUIComponent - Text', function () {
     });
 
     it('[Tabs-26] should Verify that can get all items in tab including disabled items ', function () {
+        let tabItemsValue = [
+            { "tabName": "Tab1", "tabContent": "This is Tab1", "isDisabled": true },
+            { "tabName": "Tab2", "tabContent": "This is Tab2", "isDisabled": false }
+        ]
         Helper.ElementHandler
             .click(GET_ITEM_BUTTON_TABS)
-            .verifyAlertText('[{"tabName":"Tab1","tabContent":"This is Tab1","isDisabled":true},{"tabName":"Tab2","tabContent":"This is Tab2","isDisabled":false}]')
+            .verifyAlertText(JSON.stringify(tabItemsValue))
     });
 
     it('[Tabs-29] should Verify that can get value of the selected item ', function () {
