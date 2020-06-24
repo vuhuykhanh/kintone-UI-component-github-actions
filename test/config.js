@@ -1,9 +1,9 @@
 module.exports = {	
-    "domain": "khanhvu-2.cybozu-dev.com",	 
-    "appId": 3,	  
+    "domain": "hbr0a.kintone.com",	 
+    "appId": 89,	  
     "credentials": {
-        "username": "cybozu",	
-        "password": "cybozu"
+        "username": "khiem",	
+        "password": "khiem"
     },	  
 	"folderTest": "js"
 }
