@@ -21,7 +21,8 @@ jobs:
         sudo apt-get update 
         sudo apt-get install google-chrome-stable 
     - name: Install package
-      run: npm install
+      run: |
+        npm install
     - name: Get latest build kintone-ui-component
       uses: ./actions/get_latest_build
       id: get_latest_build
